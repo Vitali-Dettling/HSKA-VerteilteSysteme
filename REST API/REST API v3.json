@@ -48,10 +48,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "login procedure successfull",
-                        "schema": {
-                            "$ref": "#/definitions/responses"
-                        }
+                        "description": "login procedure successfull"
                     },
                     "default": {
                         "description": "unexpected error",
@@ -75,13 +72,13 @@
                     {
                         "name": "pass",
                         "in": "path",
-                        "description": "user' password of the account to be deleted",
+                        "description": "user password of the account to be deleted",
                         "required": true,
                         "type": "string"
                     }
                 ],
                 "responses": {
-                    "204": {
+                    "200": {
                         "description": "account deleted"
                     },
                     "default": {
@@ -124,6 +121,51 @@
                 }
             }
         },
+        "/category/{id}": {
+            "post": {
+                "description": "the catory will be called as soon as the administrator wants to add a new category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "new ID of the new category",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "new category had been added"
+                    },
+                    "default": {
+                        "description": "Unexpected error"
+                    }
+                }
+            },
+            "delete": {
+                "description": "the catory will be called as soon as the administrator wants to delete an existing category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the to delete category",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "category was deleted"
+                    },
+                    "default": {
+                        "description": "Unexpected error"
+                    }
+                }
+            }
+        },
         "/product/{id}": {
             "get": {
                 "description": "Return the current product information.",
@@ -157,9 +199,11 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/product/{id}/{price}/{info}": {
             "post": {
-                "description": "Insert a new product.",
+                "description": "insert a new product.",
                 "operationId": "insertProduct",
                 "parameters": [
                     {
@@ -167,6 +211,20 @@
                         "in": "path",
                         "description": "id of the product.",
                         "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "price",
+                        "in": "path",
+                        "description": "id of the product.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "info",
+                        "in": "path",
+                        "description": "description of the product.",
+                        "required": false,
                         "type": "string"
                     }
                 ],
@@ -183,7 +241,7 @@
                 }
             },
             "delete": {
-                "description": "Delete a new product.",
+                "description": "delete a new product.",
                 "operationId": "deleteProduct",
                 "parameters": [
                     {
@@ -207,90 +265,37 @@
                 }
             }
         },
-        "/category/{id}": {
-            "post": {
-                "description": "the catory will be called as soon as the administrator wants to add a new category",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "new ID of the new category",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    }
+        "definitions": {
+            "errorModel": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
                 ],
-                "tags": [
-                    "Category"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "new category had been added",
-                        "schema": {
-                            "type": "string"
-                        }
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
                     },
-                    "default": {
-                        "description": "Unexpected error"
+                    "message": {
+                        "type": "string"
                     }
                 }
             },
-            "delete": {
-                "description": "the catory will be called as soon as the administrator wants to delete an existing category",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the to delete category",
-                        "required": true,
-                        "type": "string",
-                        "format": "string"
-                    }
+            "responses": {
+                "type": "object",
+                "required": [
+                    "code",
+                    "message"
                 ],
-                "tags": [
-                    "Category"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "category was deleted"
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
                     },
-                    "default": {
-                        "description": "Unexpected error"
+                    "message": {
+                        "type": "string"
                     }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "errorModel": {
-            "type": "object",
-            "required": [
-                "code",
-                "message"
-            ],
-            "properties": {
-                "code": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "message": {
-                    "type": "string"
-                }
-            }
-        },
-        "responses": {
-            "type": "object",
-            "required": [
-                "code",
-                "message"
-            ],
-            "properties": {
-                "code": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "message": {
-                    "type": "string"
                 }
             }
         }
