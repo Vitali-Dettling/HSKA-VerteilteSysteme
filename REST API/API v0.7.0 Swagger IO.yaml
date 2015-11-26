@@ -1,0 +1,287 @@
+swagger: '2.0'
+info:
+  version: 0.7.0
+  title: VIS-Labor Webshop API
+  description: API-Beschreibung der Webshop-Implementierung im Rahmen des VIS-Labors, November 2015.
+  contact:
+    name: Sebastian Schork & Vitali Dettling
+    
+host: hs-karlsruhe.de
+
+basePath: /webshop-api
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+  
+# --------------------- Account REST API Definition -------------------
+paths:
+  '/account/{user}':
+    get:
+      description: 'handles the login of a given user account'
+      operationId: loginAccount
+      produces:
+        - application/json
+        - application/xml
+        - text/xml
+        - text/html
+      parameters:
+        - name: user
+          in: path
+          description: user name
+          required: true
+          type: string
+        - name: pass
+          in: path
+          description: user's password
+          required: true
+          type: string
+      tags:
+        - login Account
+      responses:
+        '200':
+          description: 'login procedure successfull'
+        '401':
+          description: 'unauthorized login'
+        '404':
+          description: 'user not found'
+        '500':
+          description: 'internal service error'
+        #default:
+        #  description: 'unhandled and unexpected error'
+
+    delete:
+      description: 'deletes an account permanently'
+      operationId: deleteAccount
+      parameters:
+        - name: user
+          in: path
+          description: 'user name of the account to be deleted'
+          required: true
+          type: string
+        - name: pass
+          in: path
+          description: 'user password of the account to be deleted'
+          required: true
+          type: string
+      tags:
+        - delete Account
+      responses:
+        '200':
+          description: 'account deleted'
+        '401':
+          description: 'authorization error'
+        '404':
+          description: 'user not found'
+        '500':
+          description: 'internal server error'
+
+    put:
+      description: updates existing account
+      operationId: updateAccount
+      parameters:
+        - name: user
+          in: path
+          description: user name of the account
+          required: true
+          type: string
+        - name: pass
+          in: path
+          description: user' password of the account
+          required: true
+          type: string
+      tags:
+        - update Account
+      responses:
+        '200':
+          description: 'account successfully created'
+        '401':
+          description: 'authorization error'
+        '404':
+          description: 'user not found'
+        '500':
+          description: 'internal server error'
+          
+  '/account':  
+    post:
+      description: creates a new account
+      operationId: createAccount
+      parameters:
+        - name: user
+          in: path
+          description: user name of the new account
+          required: true
+          type: string
+        - name: pass
+          in: path
+          description: user' password of the new account
+          required: true
+          type: string
+      tags:
+        - create Account
+      responses:
+        '201':
+          description: 'account successfully created'
+        '500':
+          description: 'internal server error'
+          
+    
+# --------------------- Category REST API Definition -------------------  
+
+  '/category':
+    post:
+      description: 'add new category'  
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of new category'
+          required: true
+          type: string
+      tags:
+        - add Category
+      responses:
+        '201':
+          description: 'category successfully added'
+        '500':
+          description: 'internal server error'
+          
+    get:
+      description: 'return list of all existing categories'
+      operationId: getCategories
+      produces:
+        - application/json
+      tags:
+        - get Categories
+      responses:
+        '200':
+          description: array of strings
+          schema:
+            type: array
+        '500':
+          description: 'internal server error'
+
+  '/category/{id}':
+    delete:
+      description: 'delete an existing category'
+      parameters:
+        - name: id
+          in: path
+          description: 'ID of the category to be deleted'
+          required: true
+          type: string
+      tags:
+        - delete Category
+      responses:
+        '200':
+         description: 'category successfully deleted'
+        '404':
+          description: 'category not found'
+        '500':
+          description: 'internal server error'
+          
+ # --------------------- Product REST API Definition -------------------
+
+  '/product/{id}':
+    get:
+      description: 'return the current product information'
+      operationId: getProduct
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: 'id of the product'
+          required: true
+          type: string
+      tags:
+        - get Product
+      responses:
+        '200':
+          description: product object
+          schema:
+            type: object
+            properties:
+              data: 
+                $ref: '#/definitions/Product'
+                
+        '404':
+          description: 'product not found'
+        '500':
+          description: 'internal server error'
+            
+    delete:
+      description: 'delete a product'
+      operationId: deleteProduct
+      parameters:
+        - name: id
+          in: path
+          description: 'id of the product to be deleted'
+          required: true
+          type: string
+      tags:
+        - delete Product
+      responses:
+        '200':
+          description: 'product successfully deleted'
+        '404':
+          description: 'product not found'
+        '500':
+          description: 'internal server error'
+  '/product/':
+    post:
+      description: 'add a new product'
+      operationId: addProduct
+      parameters:
+        - name: product
+          in: path
+          description: 'ID of the product'
+          required: true
+          schema:
+            type: object
+            properties:
+              data: 
+                $ref: '#/definitions/Product'
+      tags:
+        - add Product
+      responses:
+        '201':
+          description: 'product successfully added'
+        '500':
+          description: 'internal server error'
+          
+    get:
+      description: 'return list of all existing products'
+      operationId: getProducts
+      produces:
+        - application/json
+      tags:
+        - get Products
+      responses:
+        '200':
+          description: array of product objects
+          schema:
+            type: array
+            properties:
+              data: 
+                $ref: '#/definitions/Product'
+        '500':
+          description: 'internal server error'
+
+
+ # --------------------- Response Message REST API Definition -------------------               
+definitions:
+          
+  Product:
+    description: 'product object'
+    type: object
+    properties:
+      id:
+        type: integer
+      price:
+        type: double
+      info:
+        type: string
+      category:
+        type: string
