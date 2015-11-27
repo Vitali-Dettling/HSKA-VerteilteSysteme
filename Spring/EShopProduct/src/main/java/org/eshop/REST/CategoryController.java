@@ -4,8 +4,10 @@ import org.eshop.core.ProductAPI;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @RestController
+@SessionAttributes(types = CategoryController.class)
 public class CategoryController {
 
 	@RequestMapping(value = "/category", method = RequestMethod.GET)

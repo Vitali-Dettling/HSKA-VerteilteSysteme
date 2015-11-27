@@ -4,8 +4,10 @@ import org.eshop.core.ProductAPI;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @RestController
+@SessionAttributes(types = ProductController.class)
 public class ProductController {
 
 /*
@@ -20,7 +22,7 @@ DELETE /product/{id}
 		return new ProductAPI().getProduct();
 	}
 	
-	@RequestMapping(value = "/product{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.PUT)
 	public String createProduct() {
 		ProductAPI pro = new ProductAPI();
 		pro.setProduct("TODO get from SOAP message");
