@@ -1,0 +1,15 @@
+Spring Doc
+http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-maven-installation
+
+Spring Boot
+https://spring.io/guides
+
+Spring Download
+https://spring.io/tools/ggts/all
+
+Spring and Jersey Tutorial
+http://blog.codeleak.pl/2015/01/getting-started-with-jersey-and-spring.html
+
+Appendix
+http://www.torsten-horn.de/techdocs/jee-rest.htm#Vergleich-REST-SOAP
+http://docs.oracle.com/cd/E19776-01/820-4867/ggnyk/index.html
