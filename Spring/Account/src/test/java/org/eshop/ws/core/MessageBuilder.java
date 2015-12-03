@@ -1,4 +1,4 @@
-package org.eshop.ws;
+package org.eshop.ws.core;
 
 import org.eshop.ws.core.User;
 import org.springframework.http.HttpEntity;

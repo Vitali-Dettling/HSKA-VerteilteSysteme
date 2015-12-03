@@ -1,4 +1,4 @@
-package org.eshop.ws;
+package org.eshop.ws.core;
 
 import static org.junit.Assert.*;
 
