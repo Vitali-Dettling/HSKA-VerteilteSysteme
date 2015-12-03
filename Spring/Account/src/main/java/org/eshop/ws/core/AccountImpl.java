@@ -1,4 +1,4 @@
-package org.eshop.core;
+package org.eshop.ws.core;
 
 public class AccountImpl {
 

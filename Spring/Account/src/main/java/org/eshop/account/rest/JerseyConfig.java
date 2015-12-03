@@ -1,4 +1,4 @@
-package org.eshop.ws;
+package org.eshop.account.rest;
 
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -12,7 +12,7 @@ public class JerseyConfig extends ResourceConfig {
 
 	public JerseyConfig() {
 		register(RequestContextFilter.class);
-		packages("org.eshop.ws");
+		packages("org.eshop.account.rest");
 		register(LoggingFilter.class);
 	}
 
