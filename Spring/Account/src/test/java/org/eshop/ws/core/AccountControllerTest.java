@@ -1,11 +1,9 @@
 package org.eshop.ws.core;
 
-import static org.junit.Assert.*;
-
-import javax.ws.rs.core.Response;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eshop.AccountApplication;
-import org.eshop.ws.core.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
@@ -19,8 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
-import junit.framework.Assert;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = AccountApplication.class)
 @WebAppConfiguration
@@ -33,10 +29,11 @@ public class AccountControllerTest {
 
 	@Test
 	public void testLoginPathVariableGET() {
-		ResponseEntity<String> entity = restTemplate.getForEntity(url + testPath, String.class);
+		ResponseEntity<Boolean> entity = restTemplate.getForEntity(url + testPath, Boolean.class);
 
 		assertNotNull(entity);
 		assertTrue(entity.getStatusCode().is2xxSuccessful());
+		assertTrue(entity.getBody());
 	}
 
 	@Test
@@ -81,10 +78,9 @@ public class AccountControllerTest {
 
 		HttpEntity<User> entity = MessageBuilder.getBodyInformation();
 
-		ResponseEntity<Boolean> entitytess = restTemplate.exchange(url, HttpMethod.POST, entity, Boolean.class);
+		ResponseEntity<String> entitytests = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 
-		assertNotNull(entitytess);
-		assertTrue(entitytess.getStatusCode().is2xxSuccessful());
-		assertTrue(entitytess.getBody());
+		assertNotNull(entitytests);
+		assertTrue(entitytests.getStatusCode().is2xxSuccessful());
 	}
 }

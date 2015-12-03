@@ -22,10 +22,10 @@ public class AccountController {
 	@Path("/account/{user}")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response login(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
+	public boolean login(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
 
 		System.err.println("-------------- Get ---------------- " + "user:" + user + " pass: " + pass);
-		return Response.ok().build();
+		return true;
 	}
 
 	@PUT
@@ -52,11 +52,11 @@ public class AccountController {
 	@Path("/account")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public boolean create(User user) {
+	public Response create(User user) {
 
 		System.err.println("-------------- Post ---------------- " + user.getFirstname() + " pass: " + user.getPassword());
 
-		return user.getRole();
+		return Response.ok().build();
 	}
 
 }
