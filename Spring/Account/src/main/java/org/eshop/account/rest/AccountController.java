@@ -52,11 +52,11 @@ public class AccountController {
 	@Path("/account")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public User create(User user) {
+	public boolean create(User user) {
 
 		System.err.println("-------------- Post ---------------- " + user.getFirstname() + " pass: " + user.getPassword());
 
-		return user;
+		return user.getRole();
 	}
 
 }

@@ -81,11 +81,10 @@ public class AccountControllerTest {
 
 		HttpEntity<User> entity = MessageBuilder.getBodyInformation();
 
-		ResponseEntity<User> entitytess = restTemplate.exchange(url, HttpMethod.POST, entity, User.class);
+		ResponseEntity<Boolean> entitytess = restTemplate.exchange(url, HttpMethod.POST, entity, Boolean.class);
 
 		assertNotNull(entitytess);
 		assertTrue(entitytess.getStatusCode().is2xxSuccessful());
-		assertEquals(entitytess.getBody().getPassword(), "testUser");
-		assertTrue(entitytess.getBody().getRole());
+		assertTrue(entitytess.getBody());
 	}
 }
