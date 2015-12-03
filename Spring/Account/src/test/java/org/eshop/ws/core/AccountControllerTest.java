@@ -12,7 +12,6 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
@@ -63,8 +62,6 @@ public class AccountControllerTest {
 	public void testDeleteWithHeaderDELETE() {
 
 		HttpEntity<String> entity = MessageBuilder.getHeaderInformation();
-
-		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
 		ResponseEntity<String> entitytests = restTemplate.exchange(url + testPath, HttpMethod.DELETE, entity,
 				String.class);
