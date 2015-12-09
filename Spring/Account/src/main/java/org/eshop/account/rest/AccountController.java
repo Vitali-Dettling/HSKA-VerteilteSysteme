@@ -11,8 +11,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.eshop.model.businessLogic.manager.UserManager;
+import org.eshop.account.model.businessLogic.manager.UserManager;
+import org.eshop.account.model.businessLogic.manager.impl.UserManagerImpl;
+import org.eshop.account.model.database.dataobjects.Role;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+
+import com.google.inject.spi.Message;
+
+import org.eshop.account.model.database.dataobjects.User;
+import org.eshop.account.rest.MessageHandler.StatusCode;
 
 @Component
 @Path("/")
@@ -22,12 +31,19 @@ public class AccountController {
 	@Path("/account/{user}")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public boolean login(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
+	public Response login(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) throws Exception {
 
-		UserManagerImpl 
+		LoginAction login = new LoginAction();
+
+		StatusCode success = login.execute(user, pass);
 		
-		System.err.println("-------------- Get ---------------- " + "user:" + user + " pass: " + pass);
-		return true;
+		if (success == StatusCode.OK) {
+			boolean role = login.getUserRole();
+			return Response.ok(role).build();
+		}
+
+		int stateCode = success.build();
+		return Response.noContent().status(stateCode).build();
 	}
 
 	@PUT

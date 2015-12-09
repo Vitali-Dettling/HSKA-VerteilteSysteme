@@ -3,8 +3,8 @@ package org.eshop.ws.core;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.eshop.AccountApplication;
-import org.eshop.model.businessLogic.manager.UserManager;
+import org.eshop.account.AccountApplication;
+import org.eshop.account.model.businessLogic.manager.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;

@@ -1,3 +1,0 @@
-Swagger Editor:
-http://editor.swagger.io/#/
-
