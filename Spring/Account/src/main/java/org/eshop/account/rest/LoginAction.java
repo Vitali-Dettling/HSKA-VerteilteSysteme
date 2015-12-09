@@ -1,10 +1,13 @@
 package org.eshop.account.rest;
 
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Response.Status;
+
 import org.eshop.account.model.businessLogic.manager.UserManager;
 import org.eshop.account.model.businessLogic.manager.impl.UserManagerImpl;
 import org.eshop.account.model.database.dataobjects.Role;
 import org.eshop.account.model.database.dataobjects.User;
-import org.eshop.account.rest.MessageHandler.StatusCode;
 
 public class LoginAction {
 
@@ -15,7 +18,7 @@ public class LoginAction {
 
 	private User user;
 
-	public StatusCode execute(String userName, String pass) throws Exception {
+	public Response execute(String userName, String pass) throws Exception {
 
 		UserManager myCManager = new UserManagerImpl();
 
@@ -26,15 +29,16 @@ public class LoginAction {
 		if (this.user != null && user.getUsername().equals(userName)) {
 			// Is the password correct?
 			if (user.getPassword().equals(pass)) {
-				return StatusCode.OK;
+				boolean role = getUserRole();
+				return Response.ok(role).build();
 			}else{
-				return StatusCode.unauthorizedLogin;
+				return Response.status(Status.UNAUTHORIZED).build();
 			}
 		}else{
-			return StatusCode.userNotFound;
+			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
-
+	
 	public boolean getUserRole() {
 
 		Role role = this.user.getRole();
@@ -45,5 +49,7 @@ public class LoginAction {
 			return true;
 		}
 	}
+
+
 
 }

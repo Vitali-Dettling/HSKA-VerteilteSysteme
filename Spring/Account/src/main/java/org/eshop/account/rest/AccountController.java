@@ -21,7 +21,6 @@ import org.springframework.stereotype.Component;
 import com.google.inject.spi.Message;
 
 import org.eshop.account.model.database.dataobjects.User;
-import org.eshop.account.rest.MessageHandler.StatusCode;
 
 @Component
 @Path("/")
@@ -35,46 +34,43 @@ public class AccountController {
 
 		LoginAction login = new LoginAction();
 
-		StatusCode success = login.execute(user, pass);
+		Response status = login.execute(user, pass);
 		
-		if (success == StatusCode.OK) {
-			boolean role = login.getUserRole();
-			return Response.ok(role).build();
-		}
-
-		int stateCode = success.build();
-		return Response.noContent().status(stateCode).build();
+		return status;
 	}
 
-	@PUT
-	@Path("/account/{user}")
-	@Consumes("application/json")
-	@Produces("application/json")
-	public Response update(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
+//	Is not supported by the original web shop.
+//	@PUT
+//	@Path("/account/{user}")
+//	@Consumes("application/json")
+//	@Produces("application/json")
+//	public Response update(@PathParam(value = "user") String user, @HeaderParam("pass") String pass,  @HeaderParam("newPass") String newPass) throws Exception {
+//
+//		return Response.noContent().status(stateCode).build();
+//	}
 
-		System.err.println("-------------- Put ---------------- " + "user:" + user + " pass: " + pass);
-		return Response.ok().build();
-	}
-
-	@DELETE
-	@Path("/account/{user}")
-	@Consumes("application/json")
-	@Produces("application/json")
-	public Response delete(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
-
-		System.err.println("-------------- Delete ---------------- " + "user:" + user + " pass: " + pass);
-		return Response.ok().build();
-	}
+//	Is not supported by the original web shop.
+//	@DELETE
+//	@Path("/account/{user}")
+//	@Consumes("application/json")
+//	@Produces("application/json")
+//	public Response delete(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
+//
+//		System.err.println("-------------- Delete ---------------- " + "user:" + user + " pass: " + pass);
+//		return Response.ok().build();
+//	}
 
 	@POST
 	@Path("/account")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response create(UserManager user) {
+	public Response create(@HeaderParam("user") String user, @HeaderParam("pass") String pass) throws Exception {
 
-		System.err.println("-------------- Post ---------------- " + user.getUserByUsername("admin"));
+		RegisterAction register = new RegisterAction();
 
-		return Response.ok().build();
+		Response status = register.execute(user, pass);
+
+		return status;
 	}
 
 }
