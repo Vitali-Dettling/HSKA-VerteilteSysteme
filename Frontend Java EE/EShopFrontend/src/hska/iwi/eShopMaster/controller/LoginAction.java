@@ -31,7 +31,7 @@ public class LoginAction extends ActionSupport {
 		/*
 		 * TEST
 		 */
-		User user = new User("admin", "admin", "admin", "admin", true);
+		User user = new User("admin", "admin", "admin", "admin", APIGateway.account_GET("admin"));
 		// -----	
 		
 		
