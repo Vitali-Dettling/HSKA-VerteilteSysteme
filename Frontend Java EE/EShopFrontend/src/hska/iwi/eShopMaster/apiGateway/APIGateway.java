@@ -21,11 +21,11 @@ import hska.iwi.eShopMaster.model.database.dataobjects.*;
 public class APIGateway {
 	
 	/* server and port configuration */
-	final static String URL_AC = "http://192.168.43.68";
+	final static String URL_AC = "http://10.116.33.107";
 	final static String PORT_AC = ":8080";
 	final static String URLAC  = URL_AC + PORT_AC + "/";
 	
-	final static String URL_PC = "http://192.168.43.68";
+	final static String URL_PC = "http://10.116.33.107";
 	final static String PORT_PC = ":8080";
 	final static String URLPC  = URL_PC + PORT_PC + "/";
 	

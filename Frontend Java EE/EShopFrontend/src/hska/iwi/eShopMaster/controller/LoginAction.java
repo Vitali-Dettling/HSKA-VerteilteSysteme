@@ -17,6 +17,13 @@ public class LoginAction extends ActionSupport {
 	private String username = null;
 	private String password = null;
 
+	
+	public void reset() throws Exception
+	{
+		this.username = "";
+		this.password = "";
+	}
+	
 	@Override
 	public String execute() throws Exception {
 

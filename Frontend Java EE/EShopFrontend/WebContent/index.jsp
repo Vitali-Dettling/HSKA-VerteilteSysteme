@@ -32,7 +32,6 @@
 		<s:label name="dummy" />
 		<s:label name="dummy" />
 		<s:label name="dummy" />
-		<s:submit method="reset" key="login.reset" align="center" />
 		<s:submit method="execute" key="login.submit" align="center" />
 	</s:form>
 
