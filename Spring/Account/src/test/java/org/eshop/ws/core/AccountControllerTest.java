@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.eshop.AccountApplication;
+import org.eshop.model.businessLogic.manager.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
@@ -73,7 +74,7 @@ public class AccountControllerTest {
 	@Test
 	public void testCreateUserPOST() {
 
-		HttpEntity<User> entity = MessageBuilder.getBodyInformation();
+		HttpEntity<UserManager> entity = MessageBuilder.getBodyInformation();
 
 		ResponseEntity<String> entitytests = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
 

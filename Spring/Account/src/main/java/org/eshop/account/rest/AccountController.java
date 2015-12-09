@@ -11,7 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.eshop.ws.core.User;
+import org.eshop.model.businessLogic.manager.UserManager;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,6 +24,8 @@ public class AccountController {
 	@Produces("application/json")
 	public boolean login(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
 
+		UserManagerImpl 
+		
 		System.err.println("-------------- Get ---------------- " + "user:" + user + " pass: " + pass);
 		return true;
 	}
@@ -52,9 +54,9 @@ public class AccountController {
 	@Path("/account")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response create(User user) {
+	public Response create(UserManager user) {
 
-		System.err.println("-------------- Post ---------------- " + user.getFirstname() + " pass: " + user.getPassword());
+		System.err.println("-------------- Post ---------------- " + user.getUserByUsername("admin"));
 
 		return Response.ok().build();
 	}

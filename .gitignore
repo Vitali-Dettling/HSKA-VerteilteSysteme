@@ -1,0 +1,17 @@
+/Spring/Account/.gitignore
+/Spring/Account/.classpath
+/Spring/Account/.project
+/Spring/Account/.settings/org.eclipse.core.resources.prefs
+/Spring/Account/.settings/org.eclipse.jdt.core.prefs
+/Spring/Account/.settings/org.eclipse.m2e.core.prefs
+RemoteSystemsTempFiles
+.metadata
+.recommenders
+Servers
+/Spring/Product/*.classpath
+/Spring/Product/*.gitignore
+/Spring/Product/*.project
+.settings
+/Spring/EShopMasterAnno/*.classpath
+/Spring/EShopMasterAnno/*.gitignore
+/Spring/EShopMasterAnno/*.project

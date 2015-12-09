@@ -1,6 +1,7 @@
 package org.eshop.ws.core;
 
-import org.eshop.ws.core.User;
+import org.eshop.model.businessLogic.manager.UserManager;
+import org.eshop.model.businessLogic.manager.impl.UserManagerImpl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -15,13 +16,13 @@ public class MessageBuilder {
 		return new HttpEntity<String>("bodyEmpty", headers);
 	}
 
-	public static HttpEntity<User> getBodyInformation() {
+	public static HttpEntity<UserManager> getBodyInformation() {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		User user = new User("testUser", "testUser", "testUser", "testUser", true);
-		return new HttpEntity<User>(user, headers);
+		UserManager user = new UserManagerImpl();
+		return new HttpEntity<UserManager>(user, headers);
 	}
 
 }
