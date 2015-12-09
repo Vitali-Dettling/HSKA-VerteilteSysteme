@@ -15,3 +15,5 @@ Servers
 /Spring/EShopMasterAnno/*.classpath
 /Spring/EShopMasterAnno/*.gitignore
 /Spring/EShopMasterAnno/*.project
+.DS_Store
+
