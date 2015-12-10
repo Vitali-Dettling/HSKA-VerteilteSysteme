@@ -11,6 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.eshop.account.controller.LoginAction;
+import org.eshop.account.controller.RegisterAction;
 import org.eshop.account.model.businessLogic.manager.UserManager;
 import org.eshop.account.model.businessLogic.manager.impl.UserManagerImpl;
 import org.eshop.account.model.database.dataobjects.Role;
@@ -24,7 +26,7 @@ import org.eshop.account.model.database.dataobjects.User;
 
 @Component
 @Path("/")
-public class AccountController {
+public class AccountAPI {
 
 	@GET
 	@Path("/account/{user}")

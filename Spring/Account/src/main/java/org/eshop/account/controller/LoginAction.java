@@ -1,4 +1,4 @@
-package org.eshop.account.rest;
+package org.eshop.account.controller;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -49,7 +49,6 @@ public class LoginAction {
 			return true;
 		}
 	}
-
 
 
 }
