@@ -6,25 +6,72 @@
 <html>
 <head>
 <title><s:text name="login.head" /></title>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="../style.css" />
 </head>
 <body>
+
+<center>
 
 	<h2>
 		<s:text name="login.title" />
 	</h2>
+	<h3>
+		<s:text name="login.subtitle" />
+	</h3>
+	<hr>
+	
+	<br>
+	Melden Sie sich jetzt an und genieﬂen Sie das ultimative Einkaufserlebnis.
+	<br>
+	<br>
 
 	<s:form action="LoginAction" focusElement="username">
-		<s:textfield name="username" key="prompt.username" size="20" required="true" />
-		<s:password name="password" key="prompt.password" size="20" required="true" />
+		<s:textfield name="username" key="prompt.username"  size="20" required="true" />
+		<s:password name="password"  key="prompt.password"  size="20" required="true" />
+		<s:label name="dummy" />
+		<s:label name="dummy" />
+		<s:label name="dummy" />
+		<s:label name="dummy" />
 		<s:submit method="execute" key="login.submit" align="center" />
 	</s:form>
 
-	<a href="./pages/register.jsp"><s:text name="register.link" /></a>
-
+	<br>
+	<hr>
+	<br>
+	
+</center>
+	
 	<font color="red">
 		<s:actionerror />
 	</font>
+	
+<center>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	Angepasst durch Sebastian Schork und Vitali Dettling, Dez. 2015
+</center>
 
 </body>
 </html>

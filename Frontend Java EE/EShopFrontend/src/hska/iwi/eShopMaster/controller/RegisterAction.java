@@ -1,5 +1,7 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.apiGateway.APIGateway;
+import hska.iwi.eShopMaster.apiGateway.Req;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.xRole;
@@ -26,20 +28,17 @@ public class RegisterAction extends ActionSupport {
         // Return string:
         String result = "input";
 
-        UserManager userManager = new UserManagerImpl();
-
-   		this.role = false;
-
-   		if (!userManager.doesUserAlreadyExist(this.username)) {
-    		    	
-	        // save it to database
-	        userManager.registerUser(this.username, this.firstname, this.lastname, this.password1, this.role);
-	            // User has been saved successfully to databse:
-	            result = "success";
-	        
+   		Req myReq = APIGateway.account_POST(getUsername(), getPassword1());
+   		
+   		
+   		if (myReq.getCode() == 200) {
+   			result = "success";
     	}
-    	else {
+    	else if(myReq.getCode() == 400){
     		addActionError(getText("error.username.alreadyInUse"));
+    	}
+    	else if(myReq.getCode() == 500){
+    		addActionError("Internal server error");
     	}
         return result;
 

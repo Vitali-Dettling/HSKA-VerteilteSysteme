@@ -21,11 +21,11 @@ import hska.iwi.eShopMaster.model.database.dataobjects.*;
 public class APIGateway {
 	
 	/* server and port configuration */
-	final static String URL_AC = "http://10.116.33.107";
+	final static String URL_AC = "http://localhost";
 	final static String PORT_AC = ":8080";
 	final static String URLAC  = URL_AC + PORT_AC + "/";
 	
-	final static String URL_PC = "http://10.116.33.107";
+	final static String URL_PC = "http://localhost";
 	final static String PORT_PC = ":8080";
 	final static String URLPC  = URL_PC + PORT_PC + "/";
 	
@@ -37,17 +37,18 @@ public class APIGateway {
 	
 	/* U S E R  A C O U N T */
 	
-	public static boolean account_GET(String sUser) throws UnirestException
+	public static Req account_GET(String sUser, String sPass) throws UnirestException
 	{
 		boolean uState = false;
 
 		HttpResponse<String> g = Unirest.get(URLAC + "account/{user}")
 			    .routeParam("user", sUser)
+			    .header("pass", sPass)
 			    .asObject(String.class);
 				
 		uState = Boolean.valueOf(g.getBody());
 		
-		return uState;
+		return new Req(g.getStatus(), uState);
 	}
 	
 	public void account_PUT(String sUser)
@@ -62,13 +63,15 @@ public class APIGateway {
 				.header("accept", "application/json");
 	}
 	
-	public void account_POST(String sUser, String sPass) throws UnirestException
+	public static Req account_POST(String sUser, String sPass) throws UnirestException
 	{
 		HttpResponse<JsonNode> p = Unirest.post(URLAC + "account/")
 				.header("accept", "application/json")
-				.field("user", sUser)
-				.field("pass", sPass)
+				.header("user", sUser)
+				.header("pass", sPass)
 				.asJson();		
+		
+		return new Req(p.getStatus(), null);
 	}
 	
 	

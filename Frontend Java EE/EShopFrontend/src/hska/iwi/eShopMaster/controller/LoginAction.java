@@ -1,6 +1,7 @@
 package hska.iwi.eShopMaster.controller;
 
 import hska.iwi.eShopMaster.apiGateway.APIGateway;
+import hska.iwi.eShopMaster.apiGateway.Req;
 import hska.iwi.eShopMaster.model.businessLogic.manager.UserManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.UserManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.xRole;
@@ -30,35 +31,28 @@ public class LoginAction extends ActionSupport {
 		// Return string:
 		String result = "input";
 
-		UserManager myCManager = new UserManagerImpl();
-		
-		// Get user from DB:
-		//User user = myCManager.getUserByUsername(getUsername());
-
-		/*
-		 * TEST
-		 */
-		User user = new User("admin", "admin", "admin", "admin", APIGateway.account_GET("admin"));
-		// -----	
-		
-		
-		// Does user exist?
-		if (user != null) {
-			// Is the password correct?
-			if (user.getPassword().equals(getPassword())) {
-				// Get session to save user role and login:
-				Map<String, Object> session = ActionContext.getContext().getSession();
+		Req myReq = APIGateway.account_GET(getUsername(), getPassword());
 				
-				// Save user object in session:
-				session.put("webshop_user", user);
-				result = "success";
-			}
-			else {
-				
-				addActionError(getText("error.password.wrong"));
-			}
+		
+		if(myReq.getCode() == 200)
+		{
+			User usr = new User(getUsername(), "","",getPassword(),(boolean)myReq.getContent());
+			
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			
+			// Save user object in session:
+			session.put("webshop_user", usr);
+			result = "success";
 		}
-
+		else if(myReq.getCode() == 401)
+		{
+			addActionError(getText("error.password.wrong"));
+		}
+		else if(myReq.getCode() == 404)
+		{
+			addActionError(getText("error.username.wrong"));
+		}
+		
 		return result;
 	}
 	

@@ -16,9 +16,9 @@
 	</h2>
 
 	<s:form action="RegisterAction">
-		<s:textfield name="firstname" key="prompt.name" size="20" required="true" />
-		<s:textfield name="lastname" key="prompt.lastname" size="20"	required="true" />
-		<s:textfield name="username" key="prompt.username" size="20" required="true" />
+		<s:textfield name="firstname" key="prompt.name"     size="20" required="false" />
+		<s:textfield name="lastname" key="prompt.lastname"  size="20" required="false" />
+		<s:textfield name="username" key="prompt.username"  size="20" required="true" />
 		<s:password name="password1" key="prompt.password1" size="20" required="true" />
 		<s:password name="password2" key="prompt.password2" size="20" required="true" />
 		<s:label name="dummy" />

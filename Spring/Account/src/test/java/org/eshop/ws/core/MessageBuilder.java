@@ -1,7 +1,7 @@
 package org.eshop.ws.core;
 
-import org.eshop.model.businessLogic.manager.UserManager;
-import org.eshop.model.businessLogic.manager.impl.UserManagerImpl;
+import org.eshop.account.model.businessLogic.manager.UserManager;
+import org.eshop.account.model.businessLogic.manager.impl.UserManagerImpl;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
