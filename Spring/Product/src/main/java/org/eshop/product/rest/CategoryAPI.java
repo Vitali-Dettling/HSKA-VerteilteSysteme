@@ -1,8 +1,5 @@
 package org.eshop.product.rest;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -12,6 +9,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.eshop.product.controller.AddCategoryAction;
+import org.eshop.product.controller.DeleteCategoryAction;
+import org.eshop.product.controller.GetCategoryAction;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,33 +22,32 @@ public class CategoryAPI {
 	@Path("/category")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response add(String name) {
+	public Response add(String name) throws Exception {
 
-		System.err.println("-------------- Post ---------------- " + name);
-
-		return Response.ok().build();
+		AddCategoryAction addCategory = new AddCategoryAction();
+		Response response = addCategory.addCategory(name);
+		return response;
 	}
 
 	@GET
 	@Path("/category")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public List<String> login() {
+	public Response getCategories() throws Exception {
 
-		List<String> list = new ArrayList<String>();
-		list.add("Cat1");
-		list.add("Cat2");
-		System.err.println("-------------- Get ---------------- " + list.get(0) + " " + list.get(1));
-		return list;
+		GetCategoryAction addCategory = new GetCategoryAction();
+		Response response = addCategory.getCategories();
+		return response;
 	}
 
 	@DELETE
 	@Path("/category/{id}")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response delete(@PathParam(value = "id") String id) {
+	public Response delete(@PathParam(value = "id") String id) throws Exception {
 
-		System.err.println("-------------- Delete ---------------- " + "id:" + id);
-		return Response.ok().build();
+		DeleteCategoryAction delete = new DeleteCategoryAction();
+		Response response = delete.deleteCategory(id);
+		return response;
 	}
 }
