@@ -1,0 +1,27 @@
+body {
+	font-size: 100.01%;
+	font-family: "Palatino Linotype", "Book Antiqua", serif;
+	background: white;
+	color: black;
+}
+
+#startpage_products table, #categories table{
+	border-collapse: collapse;	
+}
+
+#startpage_products tr.header, #categories tr.header{
+	font-weight: bold;
+}
+
+#startpage_products td, #categories td{
+	border: 1px solid black;
+	padding: 3px;
+}
+
+#startpage_products td.breakstyle, #categories td.breakstyle{
+	border: 0px;
+}
+
+#startpage_products td.odd, #categories td.odd{
+	background: #ff8000;
+}

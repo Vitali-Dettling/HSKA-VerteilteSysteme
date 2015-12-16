@@ -35,10 +35,10 @@ public class LoginAction {
 				return Response.ok(role).build();
 			}else{
 				throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).entity("auth failed").type(MediaType.TEXT_PLAIN).build());
-				//return Response.status(401).build();
+				
 			}
 		}else{
-			return Response.noContent().status(404).build();
+			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
 	

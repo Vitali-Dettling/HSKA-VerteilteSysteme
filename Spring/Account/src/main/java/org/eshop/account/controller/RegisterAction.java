@@ -31,8 +31,7 @@ public class RegisterAction {
 	            // User has been saved successfully to databse:
 	            return Response.ok().build();
     	}else{
-    		//return Response.noContent().status(400).build();
-    		throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST).entity("user already exists").type(MediaType.TEXT_PLAIN).build());
+    		throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST).entity("user already exists").type(MediaType.TEXT_PLAIN).build());		
     	}
     }
 }
