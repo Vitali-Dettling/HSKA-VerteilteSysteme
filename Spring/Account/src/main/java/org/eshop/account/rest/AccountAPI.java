@@ -16,6 +16,8 @@ import org.eshop.account.controller.RegisterAction;
 import org.eshop.account.model.businessLogic.manager.UserManager;
 import org.eshop.account.model.businessLogic.manager.impl.UserManagerImpl;
 import org.eshop.account.model.database.dataobjects.Role;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -27,7 +29,7 @@ import org.eshop.account.model.database.dataobjects.User;
 @Component
 @Path("/")
 public class AccountAPI {
-
+		
 	@GET
 	@Path("/account/{user}")
 	@Consumes("application/json")

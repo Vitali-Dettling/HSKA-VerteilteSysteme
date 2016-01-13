@@ -21,11 +21,11 @@ public class APIGateway {
 
 	/* server and port configuration */
 	final static String URL_AC = "http://localhost";
-	final static String PORT_AC = ":8070";
+	final static String PORT_AC = ":8081";
 	final static String URLAC = URL_AC + PORT_AC + "/";
 
 	final static String URL_PC = "http://localhost";
-	final static String PORT_PC = ":8090";
+	final static String PORT_PC = ":8081";
 	final static String URLPC = URL_PC + PORT_PC + "/";
 
 	/*

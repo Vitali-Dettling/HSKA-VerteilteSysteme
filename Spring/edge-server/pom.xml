@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.eshop.eureka</groupId>
-	<artifactId>eureka-server</artifactId>
+	<artifactId>edge-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>eureka-server</name>
-	<description>Demo project for Spring Boot Eureka Server</description>
+	<name>edge-server</name>
+	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -24,15 +24,9 @@
 	</properties>
 
 	<dependencies>
-		<!-- Eureka Discovery -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
-		</dependency>
-	
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka-server</artifactId>
+			<artifactId>spring-cloud-starter-zuul</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -42,8 +36,6 @@
 		</dependency>
 	</dependencies>
 	
-	
-	<!-- Eureka Discovery -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -55,7 +47,16 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<repositories>
 		<repository>
 			<id>spring-snapshots</id>
@@ -74,17 +75,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	
-	
-	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-	
 
 </project>
