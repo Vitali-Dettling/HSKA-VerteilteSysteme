@@ -1,5 +1,7 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.apiGateway.APIGateway;
+import hska.iwi.eShopMaster.apiGateway.Req;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
@@ -40,15 +42,46 @@ public class SearchAction extends ActionSupport{
 		user = (User) session.get("webshop_user");
 		
 		
+		
+		
+		
 		if(user != null){
-			// Search products and show results:
-			ProductManager productManager = new ProductManagerImpl();
-			this.products = productManager.getProductsForSearchValues(this.searchDescription, this.searchMinPrice, this.searchMaxPrice);
+
+			if(searchMinPrice == null)
+			{
+				searchMinPrice=0.0;
+			}
+			if(searchMaxPrice == null)
+			{
+				searchMaxPrice=0.0;
+			}
+			if(searchDescription == null)
+			{
+				searchDescription="";
+			}
 			
-			// Show all categories:
-			CategoryManager categoryManager = new CategoryManagerImpl();
-			this.categories = categoryManager.getCategories();
-			result = "success";
+			String pMin = String.valueOf(searchMinPrice);
+			String pMax = String.valueOf(searchMaxPrice);
+			String det = String.valueOf(searchDescription);
+			
+			
+			
+			
+			Req myReq = APIGateway.product_list_filter_GET(pMin, pMax, det);
+			
+			
+			if(myReq.getCode() == 404)
+			{
+				
+			}
+			else
+			{
+				this.products = (List<Product>)myReq.getContent();
+				result = "success";
+			}
+			
+			
+			
 		}
 		
 		return result;

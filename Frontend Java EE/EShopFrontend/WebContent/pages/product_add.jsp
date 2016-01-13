@@ -25,7 +25,7 @@
 	<s:form action="AddProductAction" focusElement="title">
 		<s:textfield name="name" key="product.prompt.name" size="20" required="true" />
 		<s:textfield name="price" key="prompt.price" size="20" required="true" />
-		<s:select name="categoryId" key="prompt.category" list="categories" listKey="id" listValue="id" value="%{categories.{id}}" required="true" />
+		<s:select name="categoryName" key="prompt.category" list="categories" listKey="id" listValue="id" value="%{categories.{id}}" required="true" />
 		<s:textarea name="details" key="prompt.details" cols="15" rows="3" />
 		<s:submit method="execute" key="product.submit" />
 		<s:reset key="product.reset" />

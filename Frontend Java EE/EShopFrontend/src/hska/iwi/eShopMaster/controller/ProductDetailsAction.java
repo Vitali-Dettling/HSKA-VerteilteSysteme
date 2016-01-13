@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ProductDetailsAction extends ActionSupport {
 	
 	private User user;
-	private int id;
+	private String id;
 	private String searchValue;
 	private Integer searchMinPrice;
 	private Integer searchMaxPrice;
@@ -46,11 +46,11 @@ public class ProductDetailsAction extends ActionSupport {
 		this.user = user;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

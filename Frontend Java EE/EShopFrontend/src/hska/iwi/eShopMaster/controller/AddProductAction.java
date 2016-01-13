@@ -1,10 +1,12 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.apiGateway.APIGateway;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.ProductManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.ProductManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
+import hska.iwi.eShopMaster.model.database.dataobjects.Product;
 import hska.iwi.eShopMaster.model.database.dataobjects.User;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class AddProductAction extends ActionSupport {
 	private String price = null;
 	private int categoryId = 0;
 	private String details = null;
+	private String categoryName = null;
 	private List<Category> categories;
 
 	public String execute() throws Exception {
@@ -28,15 +31,11 @@ public class AddProductAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("webshop_user");
 
-		if(user != null && (user.getRole())) {
+		if (user != null && (user.getRole())) {
 
-			ProductManager productManager = new ProductManagerImpl();
-			int productId = productManager.addProduct(name, Double.parseDouble(price), categoryId,
-					details);
+			APIGateway.product_POST(new Product(name, Double.valueOf(price), categoryName, details));
 
-			if (productId > 0) {
-				result = "success";
-			}
+			result = "success";
 		}
 
 		return result;
@@ -55,8 +54,7 @@ public class AddProductAction extends ActionSupport {
 		// Validate price:
 
 		if (String.valueOf(getPrice()).length() > 0) {
-			if (!getPrice().matches("[0-9]+(.[0-9][0-9]?)?")
-					|| Double.parseDouble(getPrice()) < 0.0) {
+			if (!getPrice().matches("[0-9]+(.[0-9][0-9]?)?") || Double.parseDouble(getPrice()) < 0.0) {
 				addActionError(getText("error.product.price.regex"));
 			}
 		} else {
@@ -95,6 +93,19 @@ public class AddProductAction extends ActionSupport {
 	public void setDetails(String details) {
 		this.details = details;
 	}
+	
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	
+	
+	
+	
 
 	public List<Category> getCategories() {
 		return categories;

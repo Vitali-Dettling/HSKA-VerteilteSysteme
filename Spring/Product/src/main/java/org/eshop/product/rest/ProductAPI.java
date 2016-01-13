@@ -80,7 +80,7 @@ public class ProductAPI {
 	@Produces("application/json")
 	public Response getFilteredProductList(@HeaderParam(value = "details") String details, 
 			@HeaderParam(value = "priceMin") double priceMin, 
-			@HeaderParam(value = "priceMax") double priceMax) throws Exception {
+			@HeaderParam(value = "priceMax") double priceMax) throws JSONException, Exception {
 
 		SearchAction productList = new SearchAction();
 		Response response = productList.execute(details, priceMin, priceMax);

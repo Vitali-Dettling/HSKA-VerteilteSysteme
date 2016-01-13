@@ -23,7 +23,7 @@ public class CategoryAPI {
 	@Path("/category")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response add(@HeaderParam("name") String name) throws Exception {
+	public Response add(@HeaderParam("id") String name) throws Exception {
 
 		AddCategoryAction addCategory = new AddCategoryAction();
 		Response response = addCategory.addCategory(name);

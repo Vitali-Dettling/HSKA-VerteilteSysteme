@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 			<td><s:text name="details.category" /></td>
-			<td><s:property value="product.category.name" /></td>
+			<td><s:property value="product.category" /></td>
 		</tr>
 		<tr>
 			<td><s:text name="details.details" /></td>
@@ -41,8 +41,7 @@
 		</tr>
 	</table>
 	<br />
-
-	<a href="./SearchAction.action?id=<s:property value='id'/>&searchValue=<s:property value='searchValue'/>&searchMinPrice=<s:property value='searchMinPrice'/>&searchMaxPrice=<s:property value='searchMaxPrice'/>">[<s:text name="link.back" />]</a>
-
+	<a href="<s:url action="listAllProducts"></s:url>"><s:text name="link.back" /></a>
+	
 </body>
 </html>

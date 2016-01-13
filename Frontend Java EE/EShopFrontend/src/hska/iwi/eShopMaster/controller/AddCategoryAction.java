@@ -1,5 +1,6 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.apiGateway.APIGateway;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
@@ -31,12 +32,12 @@ public class AddCategoryAction extends ActionSupport {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		user = (User) session.get("webshop_user");
 		if(user != null && (user.getRole())) {
-			CategoryManager categoryManager = new CategoryManagerImpl();
-			// Add category
-			categoryManager.addCategory(newCatName);
+			
+
+			APIGateway.category_POST(newCatName);
 			
 			// Go and get new Category list
-			this.setCategories(categoryManager.getCategories());
+			this.setCategories(APIGateway.category_GET());
 			
 			res = "success";
 		}

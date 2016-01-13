@@ -1,5 +1,6 @@
 package hska.iwi.eShopMaster.controller;
 
+import hska.iwi.eShopMaster.apiGateway.APIGateway;
 import hska.iwi.eShopMaster.model.businessLogic.manager.CategoryManager;
 import hska.iwi.eShopMaster.model.businessLogic.manager.impl.CategoryManagerImpl;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
@@ -18,7 +19,7 @@ public class DeleteCategoryAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1254575994729199914L;
 	
-	private int catId;
+	private String catId;
 	private List<Category> categories;
 
 	public String execute() throws Exception {
@@ -30,12 +31,9 @@ public class DeleteCategoryAction extends ActionSupport {
 		
 		if(user != null && (user.getRole())) {
 
-			// Helper inserts new Category in DB:
-			CategoryManager categoryManager = new CategoryManagerImpl();
-		
-			categoryManager.delCategoryById(catId);
+			APIGateway.category_DELETE(catId);
 
-			categories = categoryManager.getCategories();
+			categories = APIGateway.category_GET();
 				
 			res = "success";
 
@@ -45,11 +43,11 @@ public class DeleteCategoryAction extends ActionSupport {
 		
 	}
 
-	public int getCatId() {
+	public String getCatId() {
 		return catId;
 	}
 
-	public void setCatId(int catId) {
+	public void setCatId(String catId) {
 		this.catId = catId;
 	}
 

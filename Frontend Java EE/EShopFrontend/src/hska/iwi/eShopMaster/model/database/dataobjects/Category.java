@@ -4,7 +4,8 @@ package hska.iwi.eShopMaster.model.database.dataobjects;
 public class Category{
 
 	private String id;
-
+	private String name;
+	
 	public Category() {
 	}
 
@@ -19,4 +20,15 @@ public class Category{
 	public void setId(String id) {
 		this.id = id;
 	}
+
+	
+	
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
