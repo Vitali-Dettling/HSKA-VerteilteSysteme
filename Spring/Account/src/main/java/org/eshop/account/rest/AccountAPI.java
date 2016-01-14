@@ -1,76 +1,48 @@
 package org.eshop.account.rest;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import org.eshop.account.controller.LoginAction;
 import org.eshop.account.controller.RegisterAction;
-import org.eshop.account.model.businessLogic.manager.UserManager;
-import org.eshop.account.model.businessLogic.manager.impl.UserManagerImpl;
-import org.eshop.account.model.database.dataobjects.Role;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.google.inject.spi.Message;
-
-import org.eshop.account.model.database.dataobjects.User;
-
-@Component
-@Path("/")
+@RestController
+//@Component
+//@Path("/")
 public class AccountAPI {
 
-	@GET
-	@Path("/account/{user}")
-	@Consumes("application/json")
-	@Produces("application/json")
-	public Response login(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) throws Exception {
+//	@GET
+//	@Path("/account/{user}")
+//	@Consumes("application/json")
+//	@Produces("application/json")
+//	@RequestMapping(value = "/account/{user}", method = RequestMethod.GET)
+	@RequestMapping(value = "/account/{user}", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> login(@PathVariable(value = "user") String user, @RequestHeader("pass") String pass) {
 
 		LoginAction login = new LoginAction();
 
-		Response status = login.execute(user, pass);
+		 ResponseEntity<Boolean> status = login.execute(user, pass);
 		
 		return status;
 	}
 
-//	Is not supported by the original web shop.
-//	@PUT
-//	@Path("/account/{user}")
+
+//	@POST
+//	@Path("/account")
 //	@Consumes("application/json")
 //	@Produces("application/json")
-//	public Response update(@PathParam(value = "user") String user, @HeaderParam("pass") String pass,  @HeaderParam("newPass") String newPass) throws Exception {
-//
-//		return Response.noContent().status(stateCode).build();
-//	}
-
-//	Is not supported by the original web shop.
-//	@DELETE
-//	@Path("/account/{user}")
-//	@Consumes("application/json")
-//	@Produces("application/json")
-//	public Response delete(@PathParam(value = "user") String user, @HeaderParam("pass") String pass) {
-//
-//		System.err.println("-------------- Delete ---------------- " + "user:" + user + " pass: " + pass);
-//		return Response.ok().build();
-//	}
-
-	@POST
-	@Path("/account")
-	@Consumes("application/json")
-	@Produces("application/json")
-	public Response create(@HeaderParam("user") String user, @HeaderParam("pass") String pass) throws Exception {
+	@RequestMapping(value = "/account", method = RequestMethod.POST)
+	public ResponseEntity<String> create(@RequestHeader("user") String user, @RequestHeader("pass") String pass) throws Exception {
 
 		RegisterAction register = new RegisterAction();
 
-		Response status = register.execute(user, pass);
+		ResponseEntity<String> status = register.execute(user, pass);
 
 		return status;
 	}
