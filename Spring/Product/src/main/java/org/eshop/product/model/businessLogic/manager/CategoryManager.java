@@ -1,8 +1,8 @@
 package org.eshop.product.model.businessLogic.manager;
 
-import org.eshop.product.model.database.dataobjects.Category;
-
 import java.util.List;
+
+import org.eshop.product.model.database.dataobjects.Category;
 
 public interface CategoryManager {
 

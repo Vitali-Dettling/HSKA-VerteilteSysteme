@@ -5,11 +5,12 @@ import java.util.List;
 import org.eshop.account.model.database.GenericHibernateDAO;
 import org.eshop.account.model.database.dataobjects.Role;
 import org.eshop.account.model.sessionFactory.util.HibernateUtil;
-
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+
+
 
 public class RoleDAO extends GenericHibernateDAO<Role, Integer> {
 	

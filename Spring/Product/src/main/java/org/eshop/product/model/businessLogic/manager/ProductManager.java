@@ -1,8 +1,8 @@
 package org.eshop.product.model.businessLogic.manager;
 
-import org.eshop.product.model.database.dataobjects.Product;
-
 import java.util.List;
+
+import org.eshop.product.model.database.dataobjects.Product;
 
 public interface ProductManager {
 

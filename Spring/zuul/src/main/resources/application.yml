@@ -1,0 +1,17 @@
+server:
+  port: 8081
+ 
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health    
+   
+zuul:
+  ignoredServices: '*'
+  routes:
+    gen-proxy: /gen-api/**
+
+  ribbon:
+    ReadTimeout: 60000
+    ConnectTimeout: 60000

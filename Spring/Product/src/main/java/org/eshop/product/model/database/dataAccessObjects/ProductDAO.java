@@ -6,7 +6,6 @@ import org.eshop.product.model.database.GenericHibernateDAO;
 import org.eshop.product.model.database.dataobjects.Product;
 import org.eshop.product.model.sessionFactory.util.HibernateUtil;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;

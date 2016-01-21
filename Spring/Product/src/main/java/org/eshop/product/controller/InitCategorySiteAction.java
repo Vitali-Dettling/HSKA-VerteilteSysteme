@@ -1,14 +1,12 @@
 package org.eshop.product.controller;
 
-import org.eshop.product.model.businessLogic.manager.CategoryManager;
-import org.eshop.product.model.businessLogic.manager.impl.CategoryManagerImpl;
+import java.util.List;
+
 import org.eshop.product.model.database.dataobjects.Category;
 
-import java.util.List;
-import java.util.Map;
-
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+
+
 
 public class InitCategorySiteAction extends ActionSupport {
 

@@ -3,6 +3,11 @@ package org.eshop.account.model.database;
 import org.eshop.account.model.database.dataAccessObjects.IGenericDAO;
 //import org.eshop.account.model.database.dataobjects.Category;
 import org.eshop.account.model.sessionFactory.util.HibernateUtil;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -10,11 +15,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+
 
 
 public  class GenericHibernateDAO<E, PK extends Serializable> implements IGenericDAO<E, PK> {

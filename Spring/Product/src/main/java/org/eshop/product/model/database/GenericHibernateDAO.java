@@ -7,12 +7,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eshop.product.model.database.dataAccessObjects.IGenericDAO;
-import org.eshop.product.model.database.dataobjects.Category;
 import org.eshop.product.model.sessionFactory.util.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 

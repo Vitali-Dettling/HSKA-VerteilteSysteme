@@ -22,11 +22,8 @@ public class APIGateway {
 	/* server and port configuration */
 	final static String URL_AC = "http://localhost";
 	final static String PORT_AC = ":8081";
-	final static String URLAC = URL_AC + PORT_AC + "/";
+	final static String URLAC = URL_AC + PORT_AC + "/gen-api/";
 
-	final static String URL_PC = "http://localhost";
-	final static String PORT_PC = ":8081";
-	final static String URLPC = URL_PC + PORT_PC + "/";
 
 	/*
 	 * Rudimentary HTTP-Methods.
@@ -63,14 +60,14 @@ public class APIGateway {
 	/* C A T E G O R Y */
 
 	public static void category_POST(String id) throws UnirestException {
-		HttpResponse<JsonNode> p = Unirest.post(URLPC + "category/").header("accept", "application/json")
-				.header("id", id).asJson();
+		HttpResponse<JsonNode> p = Unirest.post(URLAC + "category/").header("accept", "application/json")
+				.header("name", id).asJson();
 	}
 
 	public static List<Category> category_GET() throws JSONException, UnirestException {
 		List<Category> lst = new ArrayList<Category>();		
 
-		HttpResponse<JsonNode> g = Unirest.get(URLPC + "category/").asJson();
+		HttpResponse<JsonNode> g = Unirest.get(URLAC + "category/").asJson();
 
 		JsonNode r = g.getBody();
 
@@ -89,13 +86,13 @@ public class APIGateway {
 	}
 
 	public static void category_DELETE(String id) throws UnirestException {
-		HttpResponse<String> d = Unirest.delete(URLPC + "category/" + id).header("accept", "application/json").asString();
+		HttpResponse<String> d = Unirest.delete(URLAC + "category/" + id).header("accept", "application/json").asString();
 	}
 
 	/* P R O D U C T */
 
 	public static Product product_GET(String id) throws JSONException, UnirestException {
-		HttpResponse<JsonNode> g = Unirest.get(URLPC + "product/" + id).header("accept", "application/json").asJson();
+		HttpResponse<JsonNode> g = Unirest.get(URLAC + "product/" + id).header("accept", "application/json").asJson();
 
 		JsonNode r = g.getBody();
 
@@ -107,12 +104,12 @@ public class APIGateway {
 	}
 
 	public void product_PUT(String id, Product product) {
-		RequestBodyEntity p = Unirest.put(URLPC + "product/" + id).header("accept", "application/json")
+		RequestBodyEntity p = Unirest.put(URLAC + "product/" + id).header("accept", "application/json")
 				.body((Object) product);
 	}
 
 	public static void product_DELETE(String id) throws UnirestException {
-		HttpResponse<String> d = Unirest.delete(URLPC + "product/" + id).header("accept", "application/json").asString();
+		HttpResponse<String> d = Unirest.delete(URLAC + "product/" + id).header("accept", "application/json").asString();
 	}
 
 	public static void product_POST(Product p) throws UnirestException, JSONException {
@@ -128,14 +125,13 @@ public class APIGateway {
 		
 		JsonNode jno = new JsonNode(jo.toString());
 		
-		HttpResponse<JsonNode> po = Unirest.post(URLPC + "product/").header("content-type", "application/json").header("accept", "application/json")
-				.body(jno).asJson();
+		HttpResponse<JsonNode> po = Unirest.post(URLAC + "product/").header("content-type", "application/json").header("accept", "application/json").header("sp", jno.toString()).asJson();
 	}
 
 	public static List<Product> product_list_GET() throws UnirestException, JSONException {
 		List<Product> lst = new ArrayList<Product>();
 
-		HttpResponse<JsonNode> g = Unirest.get(URLPC + "product/").asJson();
+		HttpResponse<JsonNode> g = Unirest.get(URLAC + "product/").asJson();
 
 		JsonNode r = g.getBody();
 
@@ -158,11 +154,9 @@ public class APIGateway {
 	
 	public static Req product_list_filter_GET(String priceMin, String priceMax, String details) throws UnirestException, JSONException {
 		
-		
-		
 		List<Product> lst = new ArrayList<Product>();
 
-		HttpResponse<JsonNode> g = Unirest.get(URLPC + "filter/").header("priceMin", priceMin).header("priceMax", priceMax).header("details", details).asJson();
+		HttpResponse<JsonNode> g = Unirest.get(URLAC + "filter/").header("priceMin", priceMin).header("priceMax", priceMax).header("details", details).asJson();
 
 		JsonNode r = g.getBody();
 

@@ -1,6 +1,7 @@
 package org.eshop.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eshop.product.model.database.dataobjects.Category;
 import org.eshop.product.model.database.dataobjects.Product;

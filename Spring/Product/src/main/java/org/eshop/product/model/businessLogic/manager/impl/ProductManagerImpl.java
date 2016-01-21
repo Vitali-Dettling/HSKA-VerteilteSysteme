@@ -1,12 +1,12 @@
 package org.eshop.product.model.businessLogic.manager.impl;
 
+import java.util.List;
+
 import org.eshop.product.model.businessLogic.manager.CategoryManager;
 import org.eshop.product.model.businessLogic.manager.ProductManager;
 import org.eshop.product.model.database.dataAccessObjects.ProductDAO;
 import org.eshop.product.model.database.dataobjects.Category;
 import org.eshop.product.model.database.dataobjects.Product;
-
-import java.util.List;
 
 public class ProductManagerImpl implements ProductManager {
 	private ProductDAO helper;

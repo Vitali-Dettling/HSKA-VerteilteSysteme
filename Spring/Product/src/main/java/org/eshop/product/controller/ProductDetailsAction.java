@@ -1,12 +1,7 @@
 package org.eshop.product.controller;
 
-import org.eshop.product.model.businessLogic.manager.ProductManager;
-import org.eshop.product.model.businessLogic.manager.impl.ProductManagerImpl;
 import org.eshop.product.model.database.dataobjects.Product;
 
-import java.util.Map;
-
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ProductDetailsAction extends ActionSupport {
